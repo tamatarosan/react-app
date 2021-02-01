@@ -1,9 +1,17 @@
 import React, { Component } from "react";
-import SearchPosts from "./SearchPosts";
-import SortPosts from "./SortPosts";
-import { Link } from "react-router-dom";
 
 class BTopMain extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { mystate: null };
+  }
+
+  updateState(state) {
+    this.setState(state);
+    this.props.updateState(state);
+    console.log("BoardTop" + JSON.stringify(this.state));
+  }
+
   render() {
     const list = this.props.data.map((data) => {
       return (
@@ -16,17 +24,7 @@ class BTopMain extends Component {
         </li>
       );
     });
-    return (
-      <main className="top-main-container">
-        <SearchPosts
-          data={this.props.data}
-          // onFilterVal={this.handleFilterVal.bind(this)}
-        />
-        <SortPosts data={this.props.data} />
-
-        <ul className="data-container">{list}</ul>
-      </main>
-    );
+    return <ul className="data-container">{list}</ul>;
   }
 }
 export default BTopMain;

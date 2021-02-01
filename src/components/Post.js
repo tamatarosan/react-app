@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import HeaderComponent from "./HeaderComponent";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class Post extends Component {
   nowattr() {
     this.now = new Date();
-    this.time = `${this.now.getFullYear()}/${`${`0${this.now.getMonth()}`.slice(
-      -2
-    )}`}/${`${`0${this.now.getDate()}`.slice(
+    console.log(this.now.getMonth());
+    this.time = `${this.now.getFullYear()}/${`${`0${
+      this.now.getMonth() + 1
+    }`.slice(-2)}`}/${`${`0${this.now.getDate()}`.slice(
       -2
     )}`} ${`${`0${this.now.getHours()}`.slice(
       -2
@@ -17,7 +18,7 @@ class Post extends Component {
     return this.time;
   }
 
-  update(event) {
+  newPost(event) {
     event.preventDefault();
     if (this.title.value != "" && this.detail.value != "") {
       this.nowattr();
@@ -63,7 +64,7 @@ class Post extends Component {
           </dl>
           <ul className="detail-command-container">
             <li>
-              <a href="#" onClick={this.update.bind(this)}>
+              <a href="#" onClick={this.newPost.bind(this)}>
                 送信
               </a>
             </li>
