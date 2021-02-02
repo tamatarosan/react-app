@@ -70,7 +70,7 @@ class BoardWrapper extends Component {
     // this.setState(this.data);
 
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route
             path="/Post"
